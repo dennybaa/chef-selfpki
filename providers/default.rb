@@ -71,14 +71,14 @@ def create_keypair
     owner 'root'
     group 'root'
     mode  00644
-    cookbook new_resource.cookbook.to_s 
+    cookbook(new_resource.cookbook.to_s || new_resource.cookbook_name.to_s)
   end
   cookbook_file "#{tmpdir}/ca.key" do
     source(new_resource.key_source || 'ca.key')
     owner 'root'
     group 'root'
     mode  00644
-    cookbook new_resource.cookbook.to_s 
+    cookbook(new_resource.cookbook.to_s || new_resource.cookbook_name.to_s)
   end
 
   # generate key pair

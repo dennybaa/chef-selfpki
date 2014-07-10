@@ -1,7 +1,7 @@
 actions :create, :delete
 default_action :create
 
-attribute :cookbook,    :kind_of => String, :required => true
+attribute :cookbook,    :kind_of => String
 attribute :cert_source, :kind_of => String
 attribute :key_source,  :kind_of => String
 attribute :cert_path,   :kind_of => String, :required => true
