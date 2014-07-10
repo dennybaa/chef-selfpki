@@ -89,7 +89,6 @@ def create_keypair
 end
 
 def pkitool_cached_path
-  cookbook_name = @new_resource.cookbook_name.to_s
-  cookbook = @run_context.cookbook_collection[cookbook_name]
+  cookbook = @run_context.cookbook_collection['selfpki']
   cookbook.preferred_filename_on_disk_location(node, :files, 'pkitool.sh')
 end
