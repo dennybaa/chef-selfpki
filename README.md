@@ -42,7 +42,11 @@ The cookbook allows generating client certificates signed by CA in place. This m
   </tr>
   <tr>
     <td><tt>cert_path</tt></td>
-    <td>Specifies the path where the new generated client certificated is stored.</td>
+    <td>Specifies the path where the new generated client certificate is stored.</td>
+  </tr>
+  <tr>
+    <td><tt>key_path</tt></td>
+    <td>Specifies the path where the new generated private key is stored.</td>
   </tr>
   <tr>
     <td><tt>key_mode</tt></td>
