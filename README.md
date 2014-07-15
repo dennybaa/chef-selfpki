@@ -64,6 +64,14 @@ The cookbook allows generating client certificates signed by CA in place. This m
     <td><tt>recreate</tt></td>
     <td>If set to <i>true</i> the client key pair is recreated. Default value: <i>false</i>.</td>
   </tr>
+  <tr>
+    <td><tt>config</tt></td>
+    <td>Hash of certificate creation options such os OU, CN etc.</td>
+  </tr>
+  <tr>
+    <td><tt>server_cert</tt></td>
+    <td>If set to <i>true</i> the server certificate will be created. Default value: <i>false</i>.</td>
+  </tr>
 </table>
 
 ## Usage

@@ -59,11 +59,12 @@ def create_keypair
   end
   %w(openssl.cnf vars).each do |f|
     template "#{tmpdir}/#{f}" do
-      variables lazy {{:config => node['selfpki']['config']}}
+      variables(config: new_resource.config)
       source "#{f}.erb"
       owner 'root'
       group 'root'
       mode  00755
+      cookbook 'selfpki'
     end
   end
   cookbook_file "#{tmpdir}/ca.crt" do
@@ -71,18 +72,19 @@ def create_keypair
     owner 'root'
     group 'root'
     mode  00644
-    cookbook(new_resource.cookbook.to_s || new_resource.cookbook_name.to_s)
+    cookbook(new_resource.cookbook || new_resource.cookbook_name.to_s)
   end
   cookbook_file "#{tmpdir}/ca.key" do
     source(new_resource.key_source || 'ca.key')
     owner 'root'
     group 'root'
     mode  00644
-    cookbook(new_resource.cookbook.to_s || new_resource.cookbook_name.to_s)
+    cookbook(new_resource.cookbook || new_resource.cookbook_name.to_s)
   end
 
   # generate key pair
-  cmd_str = %Q%/bin/sh -c ". ./vars; /bin/sh #{pkitool_cached_path} --server #{node[:fqdn]}"%
+  line_args = new_resource.server_cert ? '--server' : ''
+  cmd_str = %Q%/bin/sh -c ". ./vars; /bin/sh #{pkitool_cached_path} #{line_args} #{node[:fqdn]}"%
   execute cmd_str do
     cwd  tmpdir
   end
