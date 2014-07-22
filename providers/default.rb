@@ -58,13 +58,15 @@ def create_keypair
     mode  00644
   end
   %w(openssl.cnf vars).each do |f|
+    fcbk = "#{f}".gsub(/\./, '_') + '_cookbook'
+    fcbk = node['selfpki'][fcbk] || 'selfpki'
     template "#{tmpdir}/#{f}" do
       variables(config: new_resource.config)
       source "#{f}.erb"
       owner 'root'
       group 'root'
       mode  00755
-      cookbook 'selfpki'
+      cookbook(fcbk.to_s)
     end
   end
   cookbook_file "#{tmpdir}/ca.crt" do

@@ -64,7 +64,7 @@ commonName_max      = 64
 emailAddress      = Email Address
 emailAddress_default    = <%= @config['email'] %>
 emailAddress_max    = 40
-organizationalUnitName_default = "OpenVPN Server"
+organizationalUnitName_default = "SelfPKI"
 commonName_default = $ENV::KEY_CN
 [ req_attributes ]
 challengePassword   = A challenge password
@@ -77,11 +77,11 @@ nsComment     = "Easy-RSA Generated Certificate"
 subjectKeyIdentifier=hash
 authorityKeyIdentifier=keyid,issuer:always
 extendedKeyUsage=clientAuth
-keyUsage = digitalSignature
+keyUsage = digitalSignature, keyEncipherment
 [ server ]
 basicConstraints=CA:FALSE
-nsCertType      = server
-nsComment     = "OpenVPN Generated Server Certificate"
+nsCertType    = server
+nsComment     = "Easy-RSA Generated Certificate"
 subjectKeyIdentifier=hash
 authorityKeyIdentifier=keyid,issuer:always
 extendedKeyUsage=serverAuth

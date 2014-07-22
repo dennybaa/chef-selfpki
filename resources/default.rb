@@ -35,8 +35,6 @@ def config(hash=nil)
     @pki_config = @pki_default.merge(hash)
   else
     @pki_config ||= @pki_default.dup
-    puts '------------'
-    puts @pki_config
     @pki_config
   end
 end
