@@ -17,7 +17,7 @@ def initialize(name, run_context=nil)
   @pki_default = Mash.new({
     ca_expire: 3650,
     expire:    3650,
-    size:      1024,
+    size:      2048,
     country:   'GB',
     province:  '',
     city:      'London',
