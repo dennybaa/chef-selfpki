@@ -30,7 +30,8 @@ end
 def config(hash=nil)
   if hash
     unless hash.kind_of?(Hash)
-      raise Exceptions::ValidationFailed, "Option ca_config must be kind_of Hash! You passed #{value.inspect}."
+      failmsg = "config: must be kind_of Hash! #{value.class} type is passed."
+      raise Exceptions::ValidationFailed, failmsg
     end
     @pki_config = @pki_default.merge(hash)
   else
